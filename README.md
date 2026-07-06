@@ -6,7 +6,7 @@ This project builds a small, controlled benchmark of matched reasoning problems 
 
 ## Core hypothesis
 
-> When a model reaches the correct answer partly by parroting a hint rather than deriving it, that shortcut leaves an internal trace in activations/SAE features — even when the surface reasoning looks clean and gives no behavioral tell.
+> When a model reaches the correct answer partly by parroting a hint rather than deriving it, that shortcut leaves an internal trace in activations/SAE features, even when the surface reasoning looks clean and gives no behavioral tell.
 
 ## Two-track design
 
@@ -15,7 +15,7 @@ This project builds a small, controlled benchmark of matched reasoning problems 
 | **Behavioral** (cross-model) | Does hint-following / flipping / parroting happen broadly across model families? | Llama-3.1-8B-Instruct, Qwen2.5-7B-Instruct, Mistral-7B-Instruct, Gemma-2-9b-it | OpenRouter API (text only/ no internals) |
 | **Mechanistic** (single-model deep dive) | Can SAE features / activations detect parroting that behavior alone can't? | Gemma-2-2b-it | Local (Colab), `transformer_lens` + `sae_lens` + pretrained Gemma Scope SAEs |
 
-We use OpenRouter for the multi-model behavioral sweep because it's cheap and fast, but it only returns text completions, with no access to residual stream activations. The mechanistic track therefore stays on Gemma-2-2b-it, the smallest model with a mature, freely available SAE suite (Gemma Scope), run locally so we can hook internals directly.
+We use OpenRouter for the multi-model behavioral sweep because it's cheap and fast, but it only returns text completions, with no access to residual stream activations. The mechanistic track therefore stays on `Gemma-2-2b-it`, the smallest model with a mature, freely available SAE suite (Gemma Scope), run locally so we can hook internals directly.
 
 ## Repo structure
 
