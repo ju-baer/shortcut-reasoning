@@ -1,0 +1,33 @@
+# Behavioral-track models, all served via OpenRouter (https://openrouter.ai)
+# These are text-only calls -- no activation access. Add/remove models freely;
+# cost scales with (models x prompts x conditions), so keep this list short.
+openrouter_models:
+  - id: "meta-llama/llama-3.1-8b-instruct"
+    label: "llama3.1-8b"
+  - id: "qwen/qwen-2.5-7b-instruct"
+    label: "qwen2.5-7b"
+  - id: "mistralai/mistral-7b-instruct"
+    label: "mistral-7b"
+  - id: "google/gemma-2-9b-it"
+    label: "gemma2-9b"
+
+# Judge model used for failure-taxonomy labeling in grading.py.
+# Pick something different from the models under test to avoid self-grading bias.
+judge_model:
+  id: "anthropic/claude-3.5-haiku"
+  label: "judge"
+
+generation:
+  max_tokens: 400
+  temperature: 0.0   # deterministic decoding -- we want the same problem to
+                     # give a stable answer so flips are attributable to the
+                     # hint, not sampling noise
+  system_prompt: >
+    Solve the problem step by step, showing your reasoning, then give your
+    final answer on its own line in the exact format: "Final answer: <answer>".
+
+# Local track (mechanistic) -- run separately via run_eval_local.py, not this config.
+local_model:
+  id: "google/gemma-2-2b-it"
+  sae_release: "gemma-scope-2b-pt-res"   # sae_lens release name for Gemma Scope residual SAEs
+  layer: 14                               # mid-late layer, see README rationale
